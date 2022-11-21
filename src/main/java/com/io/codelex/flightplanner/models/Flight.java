@@ -1,17 +1,14 @@
-package com.io.codelex.flightplanner.Entities;
+package com.io.codelex.flightplanner.models;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class Flight {
-
-    @NotBlank
-    private int id;
+public class Flight extends BaseEntity {
 
     @Valid
     @NotNull
@@ -25,28 +22,19 @@ public class Flight {
     private String carrier;
 
     @NotBlank
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime departureTime;
 
     @NotBlank
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime arrivalTime;
 
-
-
-    public Flight(int id, Airport from, Airport to, String carrier, LocalDateTime departureTime, LocalDateTime arrivalTime) {
-        this.id = id;
+    public Flight(Airport from, Airport to, String carrier, LocalDateTime departureTime, LocalDateTime arrivalTime) {
         this.from = from;
         this.to = to;
         this.carrier = carrier;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Airport getFrom() {
@@ -94,11 +82,11 @@ public class Flight {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Flight flight = (Flight) o;
-        return id == flight.id && Objects.equals(from, flight.from) && Objects.equals(to, flight.to) && Objects.equals(carrier, flight.carrier) && Objects.equals(departureTime, flight.departureTime) && Objects.equals(arrivalTime, flight.arrivalTime);
+        return Objects.equals(from, flight.from) && Objects.equals(to, flight.to) && Objects.equals(carrier, flight.carrier) && Objects.equals(departureTime, flight.departureTime) && Objects.equals(arrivalTime, flight.arrivalTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, from, to, carrier, departureTime, arrivalTime);
+        return Objects.hash(from, to, carrier, departureTime, arrivalTime);
     }
 }

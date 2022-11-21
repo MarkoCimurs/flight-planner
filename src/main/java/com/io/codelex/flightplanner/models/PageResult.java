@@ -1,7 +1,6 @@
-package com.io.codelex.flightplanner.Entities;
+package com.io.codelex.flightplanner.models;
 
 import java.util.List;
-import java.util.Objects;
 
 public class PageResult<T> {
     private int page;
@@ -38,16 +37,5 @@ public class PageResult<T> {
         this.items = items;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PageResult<?> that = (PageResult<?>) o;
-        return page == that.page && totalItems == that.totalItems && Objects.equals(items, that.items);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(page, totalItems, items);
-    }
 }

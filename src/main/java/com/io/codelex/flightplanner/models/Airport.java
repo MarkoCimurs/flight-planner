@@ -1,11 +1,9 @@
-package com.io.codelex.flightplanner.Entities;
+package com.io.codelex.flightplanner.models;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import java.util.Objects;
 
 public class Airport {
-
     @Valid
     @NotBlank
     private String country;
@@ -48,16 +46,4 @@ public class Airport {
         this.airport = airport;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Airport airport1 = (Airport) o;
-        return Objects.equals(country, airport1.country) && Objects.equals(city, airport1.city) && Objects.equals(airport, airport1.airport);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(country, city, airport);
-    }
 }
